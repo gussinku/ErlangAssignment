@@ -36,7 +36,13 @@ sum_interval(N, M) when N > M -> 0;
 sum_interval(N, M)            ->
   N + sum_interval(N + 1, M).
 
-mul_interval(_, _) -> not_implemented.
+
+
+mul_interval(N, M) when N > M -> 1;
+mul_interval(N, M) -> N * mul_interval(N + 1 , M). 
+
+
+
 
 sum_sq_interval(_, _) -> not_implemented.
 
