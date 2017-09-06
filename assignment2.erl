@@ -81,21 +81,34 @@ sum_sq([])     -> 0;
 sum_sq([X|Xs]) -> X * X + sum_sq(Xs).
 
 sum_t(L) -> sum_t(L, 0).
-
 sum_t([], Acc)     -> Acc;
 sum_t([X|Xs], Acc) -> sum_t(Xs, Acc + X).
 
-mul_t(_) -> not_implemented.
+mul_t(L) -> mul_t(L , 1).
+mul_t([],Acc) -> Acc;
+mul_t([X|Xs],Acc) -> mul_t(Xs ,Acc * X).
 
-sum_sq_t(_) -> not_implemented.
 
-interval(_, _) -> not_implemented.
+sum_sq_t(L)     -> sum_sq_t(L,0).
+sum_sq_t([],Acc) -> Acc;
+sum_sq_t([X|Xs],Acc) -> sum_sq_t(Xs, Acc + X * X).
 
-sum_interval_l(_, _) -> not_implemented.
 
-mul_interval_l(_, _) -> not_implemented.
 
-sum_sq_interval_l(_, _) -> not_implemented.
+%interval(A, B) when A > B  -> [];
+%interval(A,B) -> lists:seq(A,B).
+
+interval(A,B) -> interval(A,B,[]). 
+interval(A,B,L) when A > B ->  L;
+interval(A,B,L) -> interval(A ,B -1, [B|L]).
+
+
+
+sum_interval_l(A,B) -> sum(interval(A,B)).
+  
+mul_interval_l(A, B) -> mul(interval(A,B)).
+
+sum_sq_interval_l(A, B) -> sum_sq(interval(A,B)).
 
 sum_sq_interval_l2(_, _) -> not_implemented.
 
