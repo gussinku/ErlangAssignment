@@ -44,7 +44,10 @@ mul_interval(N, M) -> N * mul_interval(N + 1 , M).
 
 
 
-sum_sq_interval(_, _) -> not_implemented.
+sum_sq_interval(_N, _M)-> 0.
+
+
+
 
 sum_interval_t(N, M) -> sum_interval_t(N, M, 0).
   
@@ -105,16 +108,37 @@ ferry_vehicles2(_, _) -> not_implemented.
 % 5. Recursion and side-effects
 
 print_0_n(N, N) -> io:format("~p~n", [N]);
-print_0_n(N, I) ->
-  io:format("~p~n", [I]),
-  print_0_n(N, I+1).
-
+  print_0_n(N, I) ->
+    io:format("~p~n", [I]),
+      print_0_n(N, I+1).
 print_0_n(N) -> print_0_n(N, 0).
 
-print_n_0(_) -> not_implemented.
 
-print_0_n_0(_) -> not_implemented.
+print_n_0(N, N) ->io:format("~p~n" ,[N]);
+  print_n_0(N, I) ->
+      print_n_0(N, I + 1),
+        io:format("~p~n" ,[I]).
+ print_n_0(N) ->print_n_0(N,0).
 
-print_sum_0_n(_) -> not_implemented.
+
+
+
+
+
+
+%%print_n_0(_) -> not_implemented.
+
+print_0_n_0(0) -> io:format("0~n");
+print_0_n_0(N) ->
+  io:format("~p~n", [N]),
+  print_0_n_0(N-1).
+
+
+print_sum_0_n(N, N, Acc) -> io:format("~p~n", [N]), Acc + N;
+print_sum_0_n(N, I, Acc) ->
+  io:format("~p~n", [I]),
+  print_sum_0_n(N, I + 1, Acc + I ).
+
+print_sum_0_n(N) -> print_sum_0_n(N, 0, 0).
 
 
