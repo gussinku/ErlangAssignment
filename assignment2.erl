@@ -44,22 +44,28 @@ mul_interval(N, M) -> N * mul_interval(N + 1 , M).
 
 
 
-sum_sq_interval(_N, _M)-> 0.
-sum_sq_interval(N, M)            ->
+sum_sq_interval(N, M) when N > M -> 0;
+sum_sq_interval(N, M) ->
     N * N + sum_sq_interval(N + 1, M).
 
 
 
 
 sum_interval_t(N, M) -> sum_interval_t(N, M, 0).
-  
-sum_interval_t(N, M, Acc) when N > M -> Acc;
-sum_interval_t(N, M, Acc)            ->
-  sum_interval_t(N + 1, M, Acc + N).
+  sum_interval_t(N, M, Acc) when N > M -> Acc;
+    sum_interval_t(N, M, Acc)            ->
+      sum_interval_t(N + 1, M, Acc + N).
 
-mul_interval_t(_, _) -> not_implemented.
+  mul_interval_t(N, M) -> mul_interval_t(N, M, 1).
+    mul_interval_t(N, M, Acc) when N > M -> Acc;
+      mul_interval_t(N, M, Acc)            ->
+        mul_interval_t(N + 1, M, Acc + N * N).
 
-sum_sq_interval_t(_, _) -> not_implemented.
+  sum_sq_interval_t(N, M) -> sum_sq_interval_t(N, M, 0).
+    sum_sq_interval_t(N, M, Acc) when N > M -> Acc;
+      sum_sq_interval_t(N, M, Acc)            ->
+        sum_sq_interval_t(N + 1, M, Acc + N * N).
+    
 
 
 % 3. Recursion on lists
