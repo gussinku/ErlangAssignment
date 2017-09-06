@@ -73,9 +73,12 @@ sum_interval_t(N, M) -> sum_interval_t(N, M, 0).
 sum([])     -> 0;
 sum([X|Xs]) -> X + sum(Xs).
 
-mul(_) -> not_implemented.
 
-sum_sq(_) -> not_implemented.
+mul([])     -> 1;
+mul([X|Xs]) -> X * mul(Xs).
+
+sum_sq([])     -> 0;
+sum_sq([X|Xs]) -> X * X + sum_sq(Xs).
 
 sum_t(L) -> sum_t(L, 0).
 
