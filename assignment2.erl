@@ -45,6 +45,8 @@ mul_interval(N, M) -> N * mul_interval(N + 1 , M).
 
 
 sum_sq_interval(_N, _M)-> 0.
+sum_sq_interval(N, M)            ->
+    N * N + sum_sq_interval(N + 1, M).
 
 
 
