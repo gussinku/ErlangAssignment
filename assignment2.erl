@@ -110,11 +110,17 @@ mul_interval_l(A, B) -> mul(interval(A,B)).
 
 sum_sq_interval_l(A, B) -> sum_sq(interval(A,B)).
 
-sum_sq_interval_l2(_, _) -> not_implemented.
 
-concat_rev(_, _) -> not_implemented.
+%sum_sq_interval_l2(A, B) -> sum([sum_sq_interval_l(A,B)]).
+sum_sq_interval_l2 (A,B) -> sum([X * X || X <- interval(A,B)]).
 
-reverse(_) -> not_implemented.
+
+
+concat_rev(A,B) -> concat_rev(A,B,[]).
+concat_rev([],B,L) -> L ++ B;
+concat_rev([H|T],B,L) -> concat_rev(T, B, [H|L]).
+
+reverse(A) ->concat_rev(A,[]). 
 
 % 4. List comprehensions
 
