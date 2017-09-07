@@ -11,7 +11,7 @@
 	 expand_circles/2, print_circles/1, even_fruit/1,
          ferry_vehicles/2, ferry_vehicles2/2,
 	 print_0_n/1, print_n_0/1, print_0_n_0/1,
-	 print_sum_0_n/1
+	 print_sum_0_n/1,even_odd/1
         ]).
 
 
@@ -126,9 +126,13 @@ reverse(A) ->concat_rev(A,[]).
 
 expand_circles(M, L) -> [ {circle, D * M} || {circle, D} <- L ].
 
-print_circles(_) -> not_implemented.
+print_circles(L) -> [ io:format("Circle ~p~n", [R]) || {circle, R} <- L ], ok.
 
-even_fruit(_) -> not_implemented.
+
+even_odd(Y) when Y rem 2 == 0 -> even;
+even_odd(_) -> odd.
+even_fruit(L) -> [F || {F,X} <- L,even_odd(X) == even].
+
 
 ferry_vehicles(_, _) -> not_implemented.
 
@@ -157,11 +161,13 @@ print_n_0(N, N) ->io:format("~p~n" ,[N]);
 
 
 %%print_n_0(_) -> not_implemented.
-
-print_0_n_0(0) -> io:format("0~n");
-print_0_n_0(N) ->
+print_0_n_0(N) -> print_0_n_0(N,0).
+print_0_n_0(0,_C) -> io:format("0~n");
+print_0_n_0(N,C) when C =< N ->  io:format("~p~n", [C]),
+print_0_n_0(N, C + 1);
+print_0_n_0(N,C) ->
   io:format("~p~n", [N]),
-  print_0_n_0(N-1).
+  print_0_n_0(N-1,C).
 
 
 print_sum_0_n(N, N, Acc) -> io:format("~p~n", [N]), Acc + N;
