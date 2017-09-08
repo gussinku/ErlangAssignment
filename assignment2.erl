@@ -57,9 +57,10 @@ sum_interval_t(N, M) -> sum_interval_t(N, M, 0).
       sum_interval_t(N + 1, M, Acc + N).
 
   mul_interval_t(N, M) -> mul_interval_t(N, M, 1).
+
     mul_interval_t(N, M, Acc) when N > M -> Acc;
       mul_interval_t(N, M, Acc)            ->
-        mul_interval_t(N + 1, M, Acc + N * N).
+        mul_interval_t(N + 1, M, Acc * N).
 
   sum_sq_interval_t(N, M) -> sum_sq_interval_t(N, M, 0).
     sum_sq_interval_t(N, M, Acc) when N > M -> Acc;
@@ -116,9 +117,9 @@ sum_sq_interval_l2 (A,B) -> sum([X * X || X <- interval(A,B)]).
 
 
 
-concat_rev(A,B) -> concat_rev(A,B,[]).
-concat_rev([],B,L) -> L ++ B;
-concat_rev([H|T],B,L) -> concat_rev(T, B, [H|L]).
+%concat_rev(A,B) -> concat_rev(A,B).
+concat_rev([],B) -> B;
+concat_rev([H|T],B) -> concat_rev(T,[H|B]).
 
 reverse(A) ->concat_rev(A,[]). 
 
@@ -134,9 +135,9 @@ even_odd(_) -> odd.
 even_fruit(L) -> [F || {F,X} <- L,even_odd(X) == even].
 
 
-ferry_vehicles(_, _) -> not_implemented.
+ferry_vehicles(N,F ) -> [ { V1, V2, W1 + W2} || {V1,W1} <- F,{V2,W2} <- F, W1 + W2 =< N, V1 /= V2].
 
-ferry_vehicles2(_, _) -> not_implemented.
+ferry_vehicles2(N, F) ->[ { V1, V2, W1 + W2} || {V1,W1} <- F,{V2,W2} <- F, W1 + W2 =< N, V1 > V2].
 
 
 % 5. Recursion and side-effects
@@ -162,12 +163,11 @@ print_n_0(N, N) ->io:format("~p~n" ,[N]);
 
 %%print_n_0(_) -> not_implemented.
 print_0_n_0(N) -> print_0_n_0(N,0).
-print_0_n_0(0,_C) -> io:format("0~n");
+print_0_n_0(0,C)when C /= 0 -> io:format("0~n");
 print_0_n_0(N,C) when C =< N ->  io:format("~p~n", [C]),
 print_0_n_0(N, C + 1);
-print_0_n_0(N,C) ->
-  io:format("~p~n", [N]),
-  print_0_n_0(N-1,C).
+print_0_n_0(N,C) ->io:format("~p~n", [N]),
+print_0_n_0(N-1,C).
 
 
 print_sum_0_n(N, N, Acc) -> io:format("~p~n", [N]), Acc + N;
