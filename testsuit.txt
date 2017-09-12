@@ -1,49 +1,403 @@
-Last login: Sun Sep  3 13:13:48 on ttys000
-kundananji@Kundananjis-MacBook:~$ cd Desktop/
-kundananji@Kundananjis-MacBook:~/Desktop$ cd assignment1
-kundananji@Kundananjis-MacBook:~/Desktop/assignment1$ erl
-Erlang/OTP 20 [erts-9.0] [source] [64-bit] [smp:4:4] [ds:4:4:10] [async-threads:10] [hipe] [kernel-poll:false]
+Last login: Fri Sep  8 12:02:57 on console
+kundananji@Kundananjis-MacBook:~$ sudo port install erlang
+Password:
+sudo: port: command not found
+kundananji@Kundananjis-MacBook:~$ /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+==> This script will install:
+/usr/local/bin/brew
+/usr/local/share/doc/homebrew
+/usr/local/share/man/man1/brew.1
+/usr/local/share/zsh/site-functions/_brew
+/usr/local/etc/bash_completion.d/brew
+/usr/local/Homebrew
+==> The following existing directories will be made group writable:
+/usr/local/etc
+/usr/local/include
+/usr/local/lib
+/usr/local/lib/pkgconfig
+/usr/local/share/info
+/usr/local/share/man/man3
+/usr/local/share/man/man5
+/usr/local/share/man/man7
+==> The following existing directories will have their owner set to kundananji:
+/usr/local/etc
+/usr/local/include
+/usr/local/lib
+/usr/local/lib/pkgconfig
+/usr/local/share/info
+/usr/local/share/man/man3
+/usr/local/share/man/man5
+/usr/local/share/man/man7
+==> The following existing directories will have their group set to admin:
+/usr/local/etc
+/usr/local/include
+/usr/local/lib
+/usr/local/lib/pkgconfig
+/usr/local/share/info
+/usr/local/share/man/man3
+/usr/local/share/man/man5
+/usr/local/share/man/man7
+==> The following new directories will be created:
+/usr/local/Cellar
+/usr/local/Homebrew
+/usr/local/Frameworks
+/usr/local/opt
+/usr/local/sbin
+/usr/local/share/zsh
+/usr/local/share/zsh/site-functions
+/usr/local/var
 
-Eshell V9.0  (abort with ^G)
-1> (assignment1).
-assignment1
-2> c(assignment1).
-{ok,assignment1}
-3> eqc:module(assignment1_eqc).
-prop_even_odd: ....................................................................................................
+Press RETURN to continue or any other key to abort
+==> /usr/bin/sudo /bin/chmod u+rwx /usr/local/etc /usr/local/include /usr/local/lib /usr/local/lib/pkgconfig /usr/local/share/info /usr/local/share/man/man3 /usr/local/share/man/man5 /usr/local/share/man/man7
+Password:
+==> /usr/bin/sudo /bin/chmod g+rwx /usr/local/etc /usr/local/include /usr/local/lib /usr/local/lib/pkgconfig /usr/local/share/info /usr/local/share/man/man3 /usr/local/share/man/man5 /usr/local/share/man/man7
+==> /usr/bin/sudo /usr/sbin/chown kundananji /usr/local/etc /usr/local/include /usr/local/lib /usr/local/lib/pkgconfig /usr/local/share/info /usr/local/share/man/man3 /usr/local/share/man/man5 /usr/local/share/man/man7
+==> /usr/bin/sudo /usr/bin/chgrp admin /usr/local/etc /usr/local/include /usr/local/lib /usr/local/lib/pkgconfig /usr/local/share/info /usr/local/share/man/man3 /usr/local/share/man/man5 /usr/local/share/man/man7
+==> /usr/bin/sudo /bin/mkdir -p /usr/local/Cellar /usr/local/Homebrew /usr/local/Frameworks /usr/local/opt /usr/local/sbin /usr/local/share/zsh /usr/local/share/zsh/site-functions /usr/local/var
+==> /usr/bin/sudo /bin/chmod g+rwx /usr/local/Cellar /usr/local/Homebrew /usr/local/Frameworks /usr/local/opt /usr/local/sbin /usr/local/share/zsh /usr/local/share/zsh/site-functions /usr/local/var
+==> /usr/bin/sudo /bin/chmod 755 /usr/local/share/zsh /usr/local/share/zsh/site-functions
+==> /usr/bin/sudo /usr/sbin/chown kundananji /usr/local/Cellar /usr/local/Homebrew /usr/local/Frameworks /usr/local/opt /usr/local/sbin /usr/local/share/zsh /usr/local/share/zsh/site-functions /usr/local/var
+==> /usr/bin/sudo /usr/bin/chgrp admin /usr/local/Cellar /usr/local/Homebrew /usr/local/Frameworks /usr/local/opt /usr/local/sbin /usr/local/share/zsh /usr/local/share/zsh/site-functions /usr/local/var
+==> /usr/bin/sudo /bin/mkdir -p /Users/kundananji/Library/Caches/Homebrew
+==> /usr/bin/sudo /bin/chmod g+rwx /Users/kundananji/Library/Caches/Homebrew
+==> /usr/bin/sudo /usr/sbin/chown kundananji /Users/kundananji/Library/Caches/Homebrew
+==> /usr/bin/sudo /bin/mkdir -p /Library/Caches/Homebrew
+==> /usr/bin/sudo /bin/chmod g+rwx /Library/Caches/Homebrew
+==> /usr/bin/sudo /usr/sbin/chown kundananji /Library/Caches/Homebrew
+==> Downloading and installing Homebrew...
+remote: Counting objects: 7042, done.
+remote: Compressing objects: 100% (4186/4186), done.
+remote: Total 7042 (delta 4220), reused 4635 (delta 2638), pack-reused 0
+Receiving objects: 100% (7042/7042), 3.70 MiB | 1.31 MiB/s, done.
+Resolving deltas: 100% (4220/4220), done.
+From https://github.com/Homebrew/brew
+ * [new branch]      master     -> origin/master
+ * [new tag]         0.1        -> 0.1
+ * [new tag]         0.2        -> 0.2
+ * [new tag]         0.3        -> 0.3
+ * [new tag]         0.4        -> 0.4
+ * [new tag]         0.5        -> 0.5
+ * [new tag]         0.6        -> 0.6
+ * [new tag]         0.7        -> 0.7
+ * [new tag]         0.7.1      -> 0.7.1
+ * [new tag]         0.8        -> 0.8
+ * [new tag]         0.8.1      -> 0.8.1
+ * [new tag]         0.9        -> 0.9
+ * [new tag]         0.9.1      -> 0.9.1
+ * [new tag]         0.9.2      -> 0.9.2
+ * [new tag]         0.9.3      -> 0.9.3
+ * [new tag]         0.9.4      -> 0.9.4
+ * [new tag]         0.9.5      -> 0.9.5
+ * [new tag]         0.9.8      -> 0.9.8
+ * [new tag]         0.9.9      -> 0.9.9
+ * [new tag]         1.0.0      -> 1.0.0
+ * [new tag]         1.0.1      -> 1.0.1
+ * [new tag]         1.0.2      -> 1.0.2
+ * [new tag]         1.0.3      -> 1.0.3
+ * [new tag]         1.0.4      -> 1.0.4
+ * [new tag]         1.0.5      -> 1.0.5
+ * [new tag]         1.0.6      -> 1.0.6
+ * [new tag]         1.0.7      -> 1.0.7
+ * [new tag]         1.0.8      -> 1.0.8
+ * [new tag]         1.0.9      -> 1.0.9
+ * [new tag]         1.1.0      -> 1.1.0
+ * [new tag]         1.1.1      -> 1.1.1
+ * [new tag]         1.1.10     -> 1.1.10
+ * [new tag]         1.1.11     -> 1.1.11
+ * [new tag]         1.1.12     -> 1.1.12
+ * [new tag]         1.1.13     -> 1.1.13
+ * [new tag]         1.1.2      -> 1.1.2
+ * [new tag]         1.1.3      -> 1.1.3
+ * [new tag]         1.1.4      -> 1.1.4
+ * [new tag]         1.1.5      -> 1.1.5
+ * [new tag]         1.1.6      -> 1.1.6
+ * [new tag]         1.1.7      -> 1.1.7
+ * [new tag]         1.1.8      -> 1.1.8
+ * [new tag]         1.1.9      -> 1.1.9
+ * [new tag]         1.2.0      -> 1.2.0
+ * [new tag]         1.2.1      -> 1.2.1
+ * [new tag]         1.2.2      -> 1.2.2
+ * [new tag]         1.2.3      -> 1.2.3
+ * [new tag]         1.2.4      -> 1.2.4
+ * [new tag]         1.2.5      -> 1.2.5
+ * [new tag]         1.2.6      -> 1.2.6
+ * [new tag]         1.3.0      -> 1.3.0
+ * [new tag]         1.3.1      -> 1.3.1
+ * [new tag]         1.3.2      -> 1.3.2
+HEAD is now at 2ed20c1 Merge pull request #3127 from MikeMcQuaid/home_spec_testball
+==> Tapping homebrew/core
+Cloning into '/usr/local/Homebrew/Library/Taps/homebrew/homebrew-core'...
+remote: Counting objects: 4557, done.
+remote: Compressing objects: 100% (4346/4346), done.
+remote: Total 4557 (delta 36), reused 462 (delta 11), pack-reused 0
+Receiving objects: 100% (4557/4557), 3.64 MiB | 3.13 MiB/s, done.
+Resolving deltas: 100% (36/36), done.
+Tapped 4342 formulae (4,602 files, 11.4MB)
+==> Cleaning up /Library/Caches/Homebrew...
+==> Migrating /Library/Caches/Homebrew to /Users/kundananji/Library/Caches/Homeb
+==> Deleting /Library/Caches/Homebrew...
+Already up-to-date.
+==> Installation successful!
+
+==> Homebrew has enabled anonymous aggregate user behaviour analytics.
+Read the analytics documentation (and how to opt-out) here:
+  https://docs.brew.sh/Analytics.html
+
+==> Next steps:
+- Run `brew help` to get started
+- Further documentation: 
+    https://docs.brew.sh
+kundananji@Kundananjis-MacBook:~$ clear
+
+kundananji@Kundananjis-MacBook:~$ brew install erlang
+==> Installing dependencies for erlang: openssl, jpeg, libpng, libtiff, wxmac
+==> Installing erlang dependency: openssl
+==> Downloading https://homebrew.bintray.com/bottles/openssl-1.0.2l.sierra.bottl
+==> Downloading from https://akamai.bintray.com/b9/b9a6d41e2889890de8db396c2c280
+######################################################################## 100.0%
+==> Pouring openssl-1.0.2l.sierra.bottle.tar.gz
+==> Caveats
+A CA file has been bootstrapped using certificates from the SystemRoots
+keychain. To add additional certificates (e.g. the certificates added in
+the System keychain), place .pem files in
+  /usr/local/etc/openssl/certs
+
+and run
+  /usr/local/opt/openssl/bin/c_rehash
+
+This formula is keg-only, which means it was not symlinked into /usr/local,
+because Apple has deprecated use of OpenSSL in favor of its own TLS and crypto libraries.
+
+If you need to have this software first in your PATH run:
+  echo 'export PATH="/usr/local/opt/openssl/bin:$PATH"' >> ~/.bash_profile
+
+For compilers to find this software you may need to set:
+    LDFLAGS:  -L/usr/local/opt/openssl/lib
+    CPPFLAGS: -I/usr/local/opt/openssl/include
+
+==> Summary
+🍺  /usr/local/Cellar/openssl/1.0.2l: 1,709 files, 12.2MB
+==> Installing erlang dependency: jpeg
+==> Downloading https://homebrew.bintray.com/bottles/jpeg-9b.sierra.bottle.tar.g
+==> Downloading from https://akamai.bintray.com/65/658fd93026eafbaf3d3a8c2db53aa
+######################################################################## 100.0%
+==> Pouring jpeg-9b.sierra.bottle.tar.gz
+🍺  /usr/local/Cellar/jpeg/9b: 20 files, 724KB
+==> Installing erlang dependency: libpng
+==> Downloading https://homebrew.bintray.com/bottles/libpng-1.6.32.sierra.bottle
+==> Downloading from https://akamai.bintray.com/53/53c8fa0a036f36a0a01aaee8ab713
+######################################################################## 100.0%
+==> Pouring libpng-1.6.32.sierra.bottle.tar.gz
+🍺  /usr/local/Cellar/libpng/1.6.32: 26 files, 1.2MB
+==> Installing erlang dependency: libtiff
+==> Downloading https://homebrew.bintray.com/bottles/libtiff-4.0.8_4.sierra.bott
+==> Downloading from https://akamai.bintray.com/31/31d87d01ab80f662899a09efa2eb5
+######################################################################## 100.0%
+==> Pouring libtiff-4.0.8_4.sierra.bottle.tar.gz
+🍺  /usr/local/Cellar/libtiff/4.0.8_4: 245 files, 3.4MB
+==> Installing erlang dependency: wxmac
+==> Downloading https://homebrew.bintray.com/bottles/wxmac-3.0.3.1_1.sierra.bott
+==> Downloading from https://akamai.bintray.com/fb/fb15ea55d8393fafa1c286485fc8c
+######################################################################## 100.0%
+==> Pouring wxmac-3.0.3.1_1.sierra.bottle.tar.gz
+🍺  /usr/local/Cellar/wxmac/3.0.3.1_1: 810 files, 24.3MB
+==> Installing erlang
+==> Downloading https://homebrew.bintray.com/bottles/erlang-20.0.4.sierra.bottle
+==> Downloading from https://akamai.bintray.com/74/748b5587be6cdbf99a265e94ea17b
+######################################################################## 100.0%
+==> Pouring erlang-20.0.4.sierra.bottle.tar.gz
+==> Caveats
+Man pages can be found in:
+  /usr/local/opt/erlang/lib/erlang/man
+
+Access them with `erl -man`, or add this directory to MANPATH.
+==> Summary
+🍺  /usr/local/Cellar/erlang/20.0.4: 7,107 files, 279.0MB
+kundananji@Kundananjis-MacBook:~$ clear
+
+kundananji@Kundananjis-MacBook:~$ which erl
+/usr/local/bin/erl
+kundananji@Kundananjis-MacBook:~$ ls /usr/local/lib/erlang
+/usr/local/lib/erlang@
+kundananji@Kundananjis-MacBook:~$ ls /usr/local/lib/erlang/
+.DS_Store   bin/        lib/        misc/       usr/        
+Install     erts-9.0.4/ man/        releases/   
+kundananji@Kundananjis-MacBook:~$ ls /usr/local/lib/erlang/lib/
+asn1-5.0.2/            eldap-1.2.2/           otp_mibs-1.1.1/
+common_test-1.15.1/    erl_docgen-0.7/        parsetools-2.1.5/
+compiler-7.1.1/        erl_interface-3.10/    public_key-1.4.1/
+cosEvent-2.2.1/        erts-9.0.4/            reltool-0.7.4/
+cosEventDomain-1.2.1/  et-1.6/                runtime_tools-1.12.1/
+cosFileTransfer-1.2.1/ eunit-2.3.3/           sasl-3.0.4/
+cosNotification-1.2.2/ hipe-3.16/             snmp-5.2.6/
+cosProperty-1.2.2/     ic-4.4.2/              ssh-4.5.1/
+cosTime-1.2.2/         inets-6.4/             ssl-8.2/
+cosTransactions-1.3.2/ kernel-5.3.1/          stdlib-3.4.1/
+crypto-4.0/            megaco-3.18.2/         syntax_tools-2.1.2/
+debugger-4.2.2/        mnesia-4.15/           tools-2.10.1/
+dialyzer-3.2.1/        observer-2.4/          wx-1.8.1/
+diameter-2.0/          orber-3.8.3/           xmerl-1.3.15/
+edoc-0.9/              os_mon-2.4.2/
+kundananji@Kundananjis-MacBook:~$ ls /usr/local/lib/erlang/lib/
+asn1-5.0.2/            eldap-1.2.2/           otp_mibs-1.1.1/
+common_test-1.15.1/    erl_docgen-0.7/        parsetools-2.1.5/
+compiler-7.1.1/        erl_interface-3.10/    public_key-1.4.1/
+cosEvent-2.2.1/        erts-9.0.4/            reltool-0.7.4/
+cosEventDomain-1.2.1/  et-1.6/                runtime_tools-1.12.1/
+cosFileTransfer-1.2.1/ eunit-2.3.3/           sasl-3.0.4/
+cosNotification-1.2.2/ hipe-3.16/             snmp-5.2.6/
+cosProperty-1.2.2/     ic-4.4.2/              ssh-4.5.1/
+cosTime-1.2.2/         inets-6.4/             ssl-8.2/
+cosTransactions-1.3.2/ kernel-5.3.1/          stdlib-3.4.1/
+crypto-4.0/            megaco-3.18.2/         syntax_tools-2.1.2/
+debugger-4.2.2/        mnesia-4.15/           tools-2.10.1/
+dialyzer-3.2.1/        observer-2.4/          wx-1.8.1/
+diameter-2.0/          orber-3.8.3/           xmerl-1.3.15/
+edoc-0.9/              os_mon-2.4.2/
+kundananji@Kundananjis-MacBook:~$ ls /usr/local/lib/erlang/lib/
+asn1-5.0.2/            eldap-1.2.2/           os_mon-2.4.2/
+common_test-1.15.1/    eqc-2.01.0/            otp_mibs-1.1.1/
+compiler-7.1.1/        erl_docgen-0.7/        parsetools-2.1.5/
+cosEvent-2.2.1/        erl_interface-3.10/    public_key-1.4.1/
+cosEventDomain-1.2.1/  erts-9.0.4/            reltool-0.7.4/
+cosFileTransfer-1.2.1/ et-1.6/                runtime_tools-1.12.1/
+cosNotification-1.2.2/ eunit-2.3.3/           sasl-3.0.4/
+cosProperty-1.2.2/     hipe-3.16/             snmp-5.2.6/
+cosTime-1.2.2/         ic-4.4.2/              ssh-4.5.1/
+cosTransactions-1.3.2/ inets-6.4/             ssl-8.2/
+crypto-4.0/            kernel-5.3.1/          stdlib-3.4.1/
+debugger-4.2.2/        megaco-3.18.2/         syntax_tools-2.1.2/
+dialyzer-3.2.1/        mnesia-4.15/           tools-2.10.1/
+diameter-2.0/          observer-2.4/          wx-1.8.1/
+edoc-0.9/              orber-3.8.3/           xmerl-1.3.15/
+kundananji@Kundananjis-MacBook:~$ clear
+
+kundananji@Kundananjis-MacBook:~$ cd Documents/
+kundananji@Kundananjis-MacBook:~/Documents$ cd workspace/
+kundananji@Kundananjis-MacBook:~/Documents/workspace/assignment/ErlangAssignment$ git status
+On branch master
+Your branch is ahead of 'origin/master' by 2 commits.signment/ErlangAssignment
+  (use "git push" to publish your local commits)
+nothing to commit, working tree clean
+kundananji@Kundananjis-MacBook:~/Documents/workspace/assignment/ErlangAssignment$ git push -u origin master
+Username for 'https://github.com': ^C  
+kundananji@Kundananjis-MacBook:~/Documents/workspace/assignment/ErlangAssignment$ cd
+kundananji@Kundananjis-MacBook:~$ clear
+
+
+
+
+
+
+
+
+
+
+
+kundananji@Kundananjis-MacBook:~$ cd Documents/
+kundananji@Kundananjis-MacBook:~/Documents$ cd workspace/
+kundananji@Kundananjis-MacBook:~/Documents/workspace$ cd assignment/
+kundananji@Kundananjis-MacBook:~/Documents/workspace/assignment$ cd ErlangAssignment/
+kundananji@Kundananjis-MacBook:~/Documents/workspace/assignment/ErlangAssignment$ erl
+Erlang/OTP 20 [erts-9.0.4] [source] [64-bit] [smp:4:4] [ds:4:4:10] [async-threads:10] [hipe] [kernel-poll:false] [dtrace]
+
+Eshell V9.0.4  (abort with ^G)
+1> (assignment2).
+assignment2
+2> c(assignment2).
+{ok,assignment2}
+3> eqc:module(assignment2_eqc).
+prop_sum_interval: ....................................................................................................
 OK, passed 100 tests
-prop_f2c: ....................................................................................................
+prop_mul_interval: ....................................................................................................
 OK, passed 100 tests
-prop_c2f: ....................................................................................................
+prop_sum_sq_interval: ....................................................................................................
 OK, passed 100 tests
-prop_convert: ....................................................................................................
+prop_sum_interval_t: ....................................................................................................
 OK, passed 100 tests
-prop_even_odd2: ....................................................................................................
+prop_mul_interval_t: ....................................................................................................
 OK, passed 100 tests
-prop_price: ....................................................................................................
+prop_sum_sq_interval_t: ....................................................................................................
 OK, passed 100 tests
-prop_stretch_if_square: ....................................................................................................
+prop_sum: ....................................................................................................
 OK, passed 100 tests
-prop_convert2: ....................................................................................................
+prop_mul: ....................................................................................................
 OK, passed 100 tests
-prop_range_overlap: ....................................................................................................
+prop_sum_sq: ....................................................................................................
 OK, passed 100 tests
-prop_rect_overlap: ....................................................................................................
+prop_sum_t: ....................................................................................................
 OK, passed 100 tests
-prop_get_amp: ....................................................................................................
+prop_mul_t: ....................................................................................................
 OK, passed 100 tests
-prop_measure: ....................................................................................................
+prop_sum_sq_t: ....................................................................................................
 OK, passed 100 tests
-prop_any_2_equal: ....................................................................................................
+prop_interval: ....................................................................................................
+OK, passed 100 tests
+prop_sum_interval_l: ....................................................................................................
+OK, passed 100 tests
+prop_mul_interval_l: ....................................................................................................
+OK, passed 100 tests
+prop_sum_sq_interval_l: ....................................................................................................
+OK, passed 100 tests
+prop_sum_sq_interval_l2: ....................................................................................................
+OK, passed 100 tests
+prop_concat_rev: ....................................................................................................
+OK, passed 100 tests
+prop_reverse: ....................................................................................................
+OK, passed 100 tests
+prop_expand_circles: ....................................................................................................
+OK, passed 100 tests
+prop_print_circles: ....................................................................................................
+OK, passed 100 tests
+prop_even_fruit: ....................................................................................................
+OK, passed 100 tests
+prop_ferry_vehicles: ....................................................................................................
+OK, passed 100 tests
+prop_ferry_vehicles2: ....................................................................................................
+OK, passed 100 tests
+prop_print_0_n: ....................................................................................................
+OK, passed 100 tests
+prop_print_n_0: ....................................................................................................
+OK, passed 100 tests
+prop_print_0_n_0: ....................................................................................................
+OK, passed 100 tests
+prop_print_sum_0_n: ....................................................................................................
 OK, passed 100 tests
 []
-4> 
+4> assignment2_eqc:count_points().
 
+Tasks with already provided solutions:
+Task '2a': 'PASSED' ([{prop_sum_interval,true}])
+Task '2d': 'PASSED' ([{prop_sum_interval_t,true}])
+Task '3a': 'PASSED' ([{prop_sum,true}])
+Task '3d': 'PASSED' ([{prop_sum_t,true}])
+Task '4a': 'PASSED' ([{prop_expand_circles,true}])
+Task '5a': 'PASSED' ([{prop_print_0_n,true}])
 
-
-
-
-
-
-
-
+Tasks to solve:
+Task '2b': 'PASSED' ([{prop_mul_interval,true}])
+Task '2c': 'PASSED' ([{prop_sum_sq_interval,true}])
+Task '2e': 'PASSED' ([{prop_mul_interval_t,true}])
+Task '2f': 'PASSED' ([{prop_sum_sq_interval_t,true}])
+Task '3b': 'PASSED' ([{prop_mul,true}])
+Task '3c': 'PASSED' ([{prop_sum_sq,true}])
+Task '3e': 'PASSED' ([{prop_mul_t,true}])
+Task '3f': 'PASSED' ([{prop_sum_sq_t,true}])
+Task '3g': 'PASSED' ([{prop_interval,true}])
+Task '3h': 'PASSED' ([{prop_sum_interval_l,true}])
+Task '3i': 'PASSED' ([{prop_mul_interval_l,true}])
+Task '3j': 'PASSED' ([{prop_sum_sq_interval_l,true}])
+Task '3k': 'PASSED' ([{prop_sum_sq_interval_l2,true}])
+Task '3l': 'PASSED' ([{prop_concat_rev,true}])
+Task '3m': 'PASSED' ([{prop_reverse,true}])
+Task '4b': 'PASSED' ([{prop_print_circles,true}])
+Task '4c': 'PASSED' ([{prop_even_fruit,true}])
+Task '4d': 'PASSED' ([{prop_ferry_vehicles,true}])
+Task '4e': 'PASSED' ([{prop_ferry_vehicles2,true}])
+Task '5b': 'PASSED' ([{prop_print_n_0,true}])
+Task '5c': 'PASSED' ([{prop_print_0_n_0,true}])
+Task '5d': 'PASSED' ([{prop_print_sum_0_n,true}])
+Passed 22 properties, failed 0 properties
+Passed 22 tasks, failed 0 tasks
+ok
+5> 
