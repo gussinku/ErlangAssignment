@@ -14,10 +14,18 @@
 
 
 % 2. Basic functions, lists and tuples
+%Check two elelments of the list is the same,returns the head
+adj_duplicates([]) -> [];
+adj_duplicates([A,A|Tail]) -> [A|adj_duplicates([A|Tail])];
+adj_duplicates([_Head|Tail]) -> adj_duplicates(Tail).
 
-adj_duplicates(_L) -> not_implemented.
 
-split(_, _) -> not_implemented.
+split([],_) -> [];
+split( N,List) when N >= length(N) -> [List];
+split(N, List) -> {Head,Tail} = lists:split(N,List),
+[Head |Tail ].
+
+
 
 normalize(_L) -> not_implemented.
 
