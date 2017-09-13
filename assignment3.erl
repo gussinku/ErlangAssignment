@@ -1,6 +1,6 @@
 -module(assignment3).
 
--export([adj_duplicates/1, split/2,
+-export([adj_duplicates/1, %split/2,%
 	 normalize/1, normalize2/1,
          last/1, find/2, sort/1,
          map/2, map2/2, filter/2, filter2/2,
@@ -9,7 +9,7 @@
          dict_new/0, dict_get/2, dict_put/3,
          dict_wellformed/1, dict_map_values/2,
          tree_wellformed/1, tree_make_bfs/1, tree_bind/2,
-         tree_flatten/1, tree_dfs/1, tree_sorted/1, tree_find/2
+         tree_flatten/1, tree_dfs/1, tree_sorted/1, tree_find/2,max_norma/1
         ]).
 
 
@@ -20,16 +20,23 @@ adj_duplicates([A,A|Tail]) -> [A|adj_duplicates([A|Tail])];
 adj_duplicates([_Head|Tail]) -> adj_duplicates(Tail).
 
 
-split([],_) -> [];
-split( N,List) when N >= length(N) -> [List];
-split(N, List) -> {Head,Tail} = lists:split(N,List),
-[Head |Tail ].
+%split(0,[]) -> [];
+%split( N ,List) when N > length(List) -> [List];
+%split(N, List) ->  { X  | X <- [N,List]},
+%[Head | split( X | Tail )].
 
 
 
-normalize(_L) -> not_implemented.
+normalize(L) -> [ X / max_norma(L)|| X <- L].
+max_norma(L) -> max_norma(L ,0). 
+max_norma([],N) -> N;
+max_norma([H|T],N) when H > N -> max_norma(T,H);
+max_norma([H|T],N) when H =< N -> max_norma(T,N).
 
-normalize2(_L) -> not_implemented.
+%This functions returns a new list from function 
+normalize2(L) -> lists:map(fun (X) ->  X / max_norma(L) end, L).
+ 
+
 
 last(Xs) ->
   if length(Xs) == 1 -> hd(Xs);
