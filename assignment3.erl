@@ -1,8 +1,8 @@
 -module(assignment3).
 
--export([adj_duplicates/1, %split/2,%
+-export([adj_duplicates/1,%split/2,%
 	 normalize/1, normalize2/1,
-         last/1, find/2, sort/1,
+         last/1, find/2,aux_sort/2,sort/1,
          map/2, map2/2, filter/2, filter2/2,
          digitize/1, is_happy/1, all_happy/2,
          expr_eval/1, expr_print/1,
@@ -20,10 +20,10 @@ adj_duplicates([A,A|Tail]) -> [A|adj_duplicates([A|Tail])];
 adj_duplicates([_Head|Tail]) -> adj_duplicates(Tail).
 
 
-%split(0,[]) -> [];
-%split( N ,List) when N > length(List) -> [List];
-%split(N, List) ->  { X  | X <- [N,List]},
-%[Head | split( X | Tail )].
+%split(0,L) -> {[],L};
+%split(_,[]] -> {[],[]};
+%split(N,X|Xs) -> 
+  %{X,Y} = split(N -1,Xs),{[X|Y],Z}.
 
 
 
@@ -37,19 +37,37 @@ max_norma([H|T],N) when H =< N -> max_norma(T,N).
 normalize2(L) -> lists:map(fun (X) ->  X / max_norma(L) end, L).
  
 
+%Takes a list as argument and returns its last element
+  last([])-> throw (crash);
+  last([H|[]])-> H ;
+  last([_|T])-> last(T) .
 
-last(Xs) ->
-  if length(Xs) == 1 -> hd(Xs);
-     true            -> last(tl(Xs))
-  end.
+%Apply function thats take in the module, function and arguments abd returns true if any atoms are the same
+find(Predicate, [H|T]) ->
+  case Predicate(H) of
+   true -> {found, H};
+   false -> find(Predicate, T)
+end;
+find(_Predicate , []) -> not_found.  
 
-find(_, _) -> not_implemented.
 
-sort(_) -> not_implemented.
+sort(L) -> sort(L,[]).
+sort([],S) -> S;
+sort([H|T],S) -> sort(T, aux_sort(H , S)).  
 
-map(_, _) -> not_implemented.
+aux_sort(X,[]) -> [X];
+aux_sort(X,[H]) when X =< H -> [X|[H]];
+aux_sort(X,[H|T]) -> [H|aux_sort(X, T)].
+ 
 
-map2(_, _) -> not_implemented.
+    
+
+
+%
+    map(F, [H|T]) -> [F(H)| map(F, T)];
+    map(_F, []) -> [].
+%List comprehension of a map function
+ map2(F, L) -> [ F(X)  ||  X <- L ].
 
 filter(_, _) -> not_implemented.
 
