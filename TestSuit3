@@ -1,0 +1,82 @@
+
+
+kundananji@Kundananjis-MacBook:~/Documents/workspace/assignment/ErlangAssignment$ erl
+Erlang/OTP 20 [erts-9.0.4] [source] [64-bit] [smp:4:4] [ds:4:4:10] [async-threads:10] [hipe] [kernel-poll:false] [dtrace]
+
+Eshell V9.0.4  (abort with ^G)
+1> c(assignment3).
+assignment3.erl:103: Warning: this expression will fail with a 'badarith' exception
+{ok,assignment3}
+2> eqc:module(assignment3_eqc).
+prop_adj_duplicates: ....................................................................................................
+OK, passed 100 tests
+prop_split: ....................................................................................................
+OK, passed 100 tests
+prop_normalize: ....................................................................................................
+OK, passed 100 tests
+prop_normalize2: ....................................................................................................
+OK, passed 100 tests
+prop_last: ....................................................................................................
+OK, passed 100 tests
+prop_find: ....................................................................................................
+OK, passed 100 tests
+prop_sort: ....................................................................................................
+OK, passed 100 tests
+prop_map: ....................................................................................................
+OK, passed 100 tests
+prop_map2: ....................................................................................................
+OK, passed 100 tests
+prop_filter: ....................................................................................................
+OK, passed 100 tests
+prop_filter2: ....................................................................................................
+OK, passed 100 tests
+prop_digitize: ....................................................................................................
+OK, passed 100 tests
+prop_is_happy: ....................................................................................................
+OK, passed 100 tests
+prop_all_happy: ....................................................................................................
+OK, passed 100 tests
+prop_expr_eval: ....................................................................................................
+OK, passed 100 tests
+prop_expr_print: ....................................................................................................
+OK, passed 100 tests
+prop_dict_new: ....................................................................................................
+OK, passed 100 tests
+prop_dict_get: ....................................................................................................
+OK, passed 100 tests
+
+Tasks with already provided solutions:
+
+Tasks to solve:
+Task '2a': 'PASSED' ([{prop_adj_duplicates,true}])
+Task '2b': 'PASSED' ([{prop_split,true}])
+Task '2c': 'PASSED' ([{prop_normalize,true}])
+Task '2d': 'PASSED' ([{prop_normalize2,true}])
+Task '2e': 'PASSED' ([{prop_last,true}])
+Task '2f': 'PASSED' ([{prop_find,true}])
+Task '2g': 'PASSED' ([{prop_sort,true}])
+Task '2h': 'PASSED' ([{prop_map,true}])
+Task '2i': 'PASSED' ([{prop_map2,true}])
+Task '2j': 'PASSED' ([{prop_filter,true}])
+Task '2k': 'PASSED' ([{prop_filter2,true}])
+Task '3': 'PASSED' ([{prop_digitize,true}])
+Task '4': 'PASSED' ([{prop_is_happy,true},{prop_all_happy,true}])
+Task '5a': 'PASSED' ([{prop_expr_eval,true}])
+Task '5b': 'PASSED' ([{prop_expr_print,true}])
+Task '6a': 'FAILED' ([{prop_dict_new,true},
+                      {prop_dict_get,true},
+                      {prop_dict_put,false}])
+Task '6b': 'FAILED' ([{prop_dict_wellformed,false}])
+Task '6c': 'FAILED' ([{prop_dict_map_values,false}])
+Task '7a': 'FAILED' ([{prop_tree_wellformed,false}])
+Task '7b': 'FAILED' ([{prop_tree_make_bfs,false}])
+Task '7c': 'FAILED' ([{prop_tree_bind,false},
+                      {prop_tree_flatten,false},
+                      {prop_tree_map,false}])
+Task '7d': 'FAILED' ([{prop_tree_dfs,false},
+                      {prop_tree_sorted,false},
+                      {prop_tree_find,false}])
+Passed 18 properties, failed 11 properties
+Passed 15 tasks, failed 7 tasks
+ok
+4> 
