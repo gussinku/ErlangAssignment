@@ -12,10 +12,10 @@
          map/2, map2/2, filter/2, filter2/2,
          digitize/1, is_happy/1, all_happy/2,
          expr_eval/1, expr_print/1,
-         dict_new/0, dict_get/2, %dict_put/3,
-         %dict_wellformed/1, dict_map_values/2,
-         %tree_wellformed/1, tree_make_bfs/1, tree_bind/2,
-         %tree_flatten/1, tree_dfs/1, tree_sorted/1,reverse/1, tree_find/2,
+         dict_new/0, dict_get/2, dict_put/3,
+         dict_wellformed/1, dict_map_values/2,
+         tree_wellformed/1, tree_make_bfs/1, tree_bind/2,
+         tree_flatten/1, tree_dfs/1, tree_sorted/1,reverse/1, tree_find/2,
          max_norma/1
         ]).
 
