@@ -4,15 +4,16 @@
         ]).
 -export([loop/1]).
 
-
+%starting a server simulation
 start() -> spawn(assignment4_counter,init,[]).
 
+%register a process
 init() -> io:format("starting ...~n"),
         PID = self(),
           register(assignment4_counter,PID),
           loop({0,PID}).
       
-
+%main loop process for inr,fetch,reset and stop
 loop({Count, S}) ->
    receive
         {incr,Pid} ->
@@ -31,6 +32,7 @@ loop({Count, S}) ->
 
         end. 
 
+%increment the process for every excution
 incr(S) ->
          S ! {incr, self()},
          receive
@@ -38,6 +40,7 @@ incr(S) ->
                 after 500 -> process_might_be_stopped
                  end.
 
+%fetches process pid
 fetch(S) -> 
    S ! {fetch, self()},
        receive
@@ -45,6 +48,7 @@ fetch(S) ->
         after 500 -> process_might_be_stopped
         end.
 
+%resets the proesss with repective pid
 reset(S) ->  
     S ! {reset, self()},
    receive
@@ -52,6 +56,7 @@ reset(S) ->
 after 500 -> process_might_be_stopped
     end.
 
+%stops server process 
 stop(S) ->    
 S ! {stop, self()},
    receive

@@ -57,3 +57,13 @@ pmap(F, L) ->
 
 % Write your answer here.
 
+%f() read 5
+%g() read 5
+%test() read 3
+
+% The processes are running concurrently and hence shares time to excute each of these different tasks, 
+% maintaining the illusion that the different tasks run in parallel.
+%From our deduction the test function is first excuted calling the  add() from the loop and once it reached f() , it partially process a bit of task and sends back 
+%the results to the loop and then g() begins as well and completes its task and also sends back results to loop and the process goes on and on untillmall task are completed.
+
+
