@@ -2,7 +2,7 @@
 -export([start/0, init/0, stop/0, store/2, fetch/1, flush/0
         ]).
 
-% Starting the serverwith same registerd PId
+% Starting the server with same registerd PId that was spawned to help us send message to the sts
 start() ->
   case whereis(sts) of
     undefined ->
@@ -11,7 +11,7 @@ start() ->
       {ok, P};
     P -> {ok, P}
   end.
-  % init the status of server running 
+  % init the status of server running recursively
 init() -> loop([]).
 
 %Handles multiple process of store,fetch,stop and flush during the life cycle of the server.
