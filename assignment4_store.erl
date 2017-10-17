@@ -6,69 +6,62 @@
 start() ->
   case whereis(sts) of
     undefined ->
-      Pid = spawn(fun() -> init() end),
-      register(sts, Pid),
-      {ok, Pid};
-    Pid  ->
-      {ok,Pid}
+      P = spawn(fun init/0),
+      register(sts, P),
+      {ok, P};
+    P -> {ok, P}
   end.
   % init the status of server running 
-init() -> io:format("Starting... ~n"),
-  loop([dict:new()]).
+init() -> loop([]).
 
 %Handles multiple process of store,fetch,stop and flush during the life cycle of the server.
-loop(Dict) ->
-receive
-        {store, {Pid,K}, V} ->
-          case proplists:is_defined({Pid, K}, Dict) of
-            true     ->
-              {_, OldV} = proplists:lookup({Pid, K}, Dict),
-               Pid ! {value, OldV},
-            loop([{{Pid, K}, V} |Dict]);
-            false       ->  Pid ! {ok,no_value},
-              loop([{{Pid, K}, V} | Dict])
-          end;
-        {fetch, {Pid, K}} ->
-          case proplists:is_defined({Pid,K}, Dict) of
-            true     -> {_,V} = proplists:lookup({Pid, K}, Dict),
-              Pid ! {value, V},
-          loop(Dict);
-            false       -> Pid ! not_found,
-          loop(Dict)
-          end;
-        {stop, Pid}     ->  Pid ! done;
-
-        {flush, Pid} -> 
-  Pid ! {ok, flushed},
-        loop([X || X = {{P, _}, _} <- Dict, P /= Pid])
-end.
-
-%Functinality to stop the server
-stop() ->
-  sts ! {stop, self()},
+loop(Store) ->
   receive
-    done -> ok
-after 500 -> process_might_be_stopped
-end.
-%Stores the PId associated with the Key and value of the process
-store(K, V) ->
-  sts ! {store, {self(), K}, V},
-receive
-  {ok,no_value} -> {ok,no_value};
-  {value, OldV} -> {ok, OldV}
-end.
+    stop -> ok;
 
-%Fetches stored Pid processes during excution
-fetch(K) ->
-  sts ! {fetch, {self(), K}},
-  receive
-    {value, V} -> {value, V};
-    not_found -> {error, not_found}
+    {store, Key, Value, From} ->
+      case proplists:lookup({From, Key}, Store) of
+        none       ->
+          From ! {store, {ok, no_value}},
+          loop([{{From, Key}, Value}|Store]);
+        {{From, Key}, OldVal} ->
+          From ! {store, {ok, OldVal}},
+          loop([{{From, Key}, Value}|proplists:delete({From, Key}, Store)])
+      end;
+    {fetch, Key, From} ->
+      case proplists:lookup({From, Key}, Store) of
+        none       -> Reply = {error, not_found};
+        {{From, Key}, Val} -> Reply = {ok, Val}
+      end,
+      From ! {fetch, Reply},
+      loop(Store);
+    {flush, From} ->
+      From ! {flush, {ok, flushed}},
+      loop([ X || X = {{F, _}, _} <- Store, F =/= From])
   end.
 
-%removes Pid associated processs
+%Stores the PId associated with the Key and value of the process
+store(Key, Value) ->
+  sts ! {store, Key, Value, self()},
+  receive {store, Res} -> Res
+  end.
+
+%Fetches stored Pid processes during excution
+fetch(Key) ->
+  sts ! {fetch, Key, self()},
+  receive {fetch, Res} -> Res
+  end.
+
+%reads the message sent by the process and returns the messgae PID
 flush() ->
   sts ! {flush, self()},
-  receive
-    {ok, flushed} -> {ok, flushed}
+  receive {flush, Res} -> Res
+  end.
+  %Functinality to stop the server
+stop() ->
+  case whereis(sts) of
+    undefined -> already_stopped;
+    P         ->
+      P ! stop,
+      stopped
   end.

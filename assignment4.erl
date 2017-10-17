@@ -38,18 +38,16 @@ dist_task(L) ->
 
 
  %catches errors and include them in the map as normal values to the user
-pmap(F, L) ->
-        await1(spawn_jobs1(F,L)). 
-        spawn_jobs1(F, L) ->
-           Parent = self(),
-           [spawn(fun() ->
-        Parent ! {self(), catch F(X)} end) || X <- L].
-%monitors the pids and match them to specific ref
-        await1(Pids) ->
-        [receive {Pid,Res} -> Res end || Pid <- Pids].
+ pmap(Fun, Data) ->
+    Self = self(),
+    Pids = [spawn(fun() -> 
+        Res = case catch {ok, Fun(N)} of
+                {ok, R} -> R;
+                  R -> R
+            end,
+        Self ! {self(), Res}end) || N <- Data],
 
-
-
+    [ receive {Pid, N} -> N end || Pid <- Pids ].
 
 %%
 %% Problem 4
@@ -57,7 +55,7 @@ pmap(F, L) ->
 
 % Write your answer here.
 
-%f() read 5
+%f() read 6
 %g() read 5
 %test() read 3
 

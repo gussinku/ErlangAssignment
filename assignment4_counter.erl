@@ -37,7 +37,6 @@ incr(S) ->
          S ! {incr, self()},
          receive
                  done -> done
-                after 500 -> process_might_be_stopped
                  end.
 
 %fetches process pid
@@ -45,7 +44,6 @@ fetch(S) ->
    S ! {fetch, self()},
        receive
            N -> N
-        after 500 -> process_might_be_stopped
         end.
 
 %resets the proesss with repective pid
@@ -53,7 +51,6 @@ reset(S) ->
     S ! {reset, self()},
    receive
         done -> ok
-after 500 -> process_might_be_stopped
     end.
 
 %stops server process 
@@ -61,7 +58,5 @@ stop(S) ->
 S ! {stop, self()},
    receive
          done -> ok
-        after 500 -> process_might_be_stopped
-
  end.
       
