@@ -59,9 +59,8 @@ dist_task(L) ->
 %g() read 5
 %test() read 3
 
-% The processes are running concurrently and hence shares time to excute each of these different tasks, 
-% maintaining the illusion that the different tasks run in parallel.
-%From our deduction the test function is first excuted calling the  add() from the loop and once it reached f() , it partially process a bit of task and sends back 
-%the results to the loop and then g() begins as well and completes its task and also sends back results to loop and the process goes on and on untillmall task are completed.
+%This sherlock holmes resoning is when the process is started , we know that before test() read 3 is printed there is a also a process add(P,3 ) 
+% that occured and before the g() read 5 printed and 
+% after g() read 3 there is another process that ocuured which was add 2 from g hence the g read 5 and after that we added 1 from f() read 6
 
 
